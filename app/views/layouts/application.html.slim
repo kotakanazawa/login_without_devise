@@ -8,4 +8,11 @@ html
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   body
+    - if flash.notice.present?
+        p= flash.notice
+    - if current_user
+      li= link_to "ログアウト", logout_path, method: :delete
+    - else
+      li= link_to "ログイン", login_path
+      li= link_to "サインアップ", signup_path
     = yield
